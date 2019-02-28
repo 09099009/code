@@ -1,0 +1,12 @@
+3.pro3
+	(1).description
+		输入链表，返回vector，反转链表
+	(2).solution
+	(3).code
+		a.使用迭代器遍历vector
+			for(std::vector<int> it = v.begin(); it != v.end(); ++it){
+				std::cout << *it << std::endl; //注意指针
+			}
+		b.倒置vector
+			利用reverse函数，头文件<algorithm>, reverse(v.begin(), v.end())
+
