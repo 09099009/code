@@ -9,4 +9,8 @@
 			}
 		b.倒置vector
 			利用reverse函数，头文件<algorithm>, reverse(v.begin(), v.end())
-
+4.pro4
+	(1).description
+		根据前序和中序遍历构建二叉树
+	(2).solution
+		递归
