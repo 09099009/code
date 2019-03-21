@@ -1,11 +1,17 @@
 #include<cstdlib>
 
+struct Point{
+	int x;
+	int y;
+	Point(const int _x, const int _y): x(_x), y(_y){}
+};
+
 struct AvlNode{
-	int data;
+	Point data;
 	int height;
 	AvlNode *left;
 	AvlNode *right;
-	AvlNode(const int d): data(d), left(NULL), right(NULL), height(0){}
+	AvlNode(const Point p): data(p), left(NULL), right(NULL), height(0){}
 };
 
 class AvlTree{
@@ -15,8 +21,8 @@ public:
 	AvlNode *root;
 	AvlNode *FindMax(AvlNode *t);
 	AvlNode *FindMin(AvlNode *t);
-	void Insert(AvlNode *&t, int x);
-	bool Delete(AvlNode *&t, int x);
+	void Insert(AvlNode *&t, Point p);
+	bool Delete(AvlNode *&t, Point p);
 	void Inorder(AvlNode *t);
 	void Preorder(AvlNode *t);
 private:

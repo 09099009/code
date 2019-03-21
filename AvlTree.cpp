@@ -45,15 +45,15 @@ AvlNode *AvlTree::RL(AvlNode *t){
 	return RR(t);
 }
 
-void AvlTree::Insert(AvlNode *&t, int x){
+void AvlTree::Insert(AvlNode *&t, Point p){
 	if(t == NULL){
-		t = new AvlNode(x);
+		t = new AvlNode(p);
 	}
 	else{
-		if(x < t->data){
-			Insert(t->left, x);
+		if(p.x < t->data.x){
+			Insert(t->left, p);
 			if(GetHeight(t->left) - GetHeight(t->right) > 1){
-				if(x < t->left->data){
+				if(p.x < t->left->data.x){
 					t = LL(t);
 				}
 				else{
@@ -62,13 +62,13 @@ void AvlTree::Insert(AvlNode *&t, int x){
 			}
 
 		}
-		else if(x > t-> data){
-			Insert(t->right, x);
+		else if(p.x > t->data.x){
+			Insert(t->right, p);
 			if(GetHeight(t->right) - GetHeight(t->left) > 1){
-				if(x < t->right->data){
+				if(p.x < t->right->data.x){
 					t = RL(t);
 				}
-				else if(x > t->right->data){
+				else{
 					t = RR(t);
 				}
 			}
@@ -100,11 +100,11 @@ AvlNode *AvlTree::FindMin(AvlNode *t){
 	return FindMin(t->left);
 }
 
-bool AvlTree::Delete(AvlNode *&t, int x){
+bool AvlTree::Delete(AvlNode *&t, Point p){
 	if(t == NULL){
 		return false;
 	}
-	if(x == t->data){
+	if(p.x == t->data.x){
 		if(t->left != NULL && t->right != NULL){
 			if(GetHeight(t->left) > GetHeight(t->right)){
 				t->data = FindMax(t->left)->data;
@@ -123,8 +123,8 @@ bool AvlTree::Delete(AvlNode *&t, int x){
 		}
 	}
 	else{
-		if(x < t->data){
-			Delete(t->left, x);
+		if(p.x < t->data.x){
+			Delete(t->left, p);
 			if(GetHeight(t->right) - GetHeight(t->left) > 1){
 				if(GetHeight(t->right->left) > GetHeight(t->right->right)){
 					t = RL(t);
@@ -137,8 +137,8 @@ bool AvlTree::Delete(AvlNode *&t, int x){
 				t->height = max(GetHeight(t->left), GetHeight(t->right)) + 1;
 			}
 		}
-		else if(x > t->data){
-			Delete(t->right, x);
+		else if(p.x > t->data.x){
+			Delete(t->right, p);
 			if(GetHeight(t->left) - GetHeight(t->right) > 1){
 				if(GetHeight(t->left->left) > GetHeight(t->left->right)){
 					t = LL(t);
@@ -159,7 +159,7 @@ void AvlTree::Preorder(AvlNode *t){
 	if(t == NULL){
 		return;
 	}
-	cout << t->data << "(" << t->height << ") ";
+	cout << t->data.x << "(" << t->height << ") ";
 	Preorder(t->left);
 	Preorder(t->right);
 }
@@ -169,11 +169,11 @@ void AvlTree::Inorder(AvlNode *t){
 		return;
 	}
 	Inorder(t->left);
-	cout << t->data << "(" << t->height << ") ";
+	cout << t->data.x << "(" << t->height << ") ";
 	Inorder(t->right);
 }
 
-int main(){
+/*int main(){
 	AvlTree *tree = new AvlTree();
 	int value;
 	cout << "input number to construct AvlTree,(-1 to pause): " << endl;
@@ -199,5 +199,5 @@ int main(){
 		tree->Preorder(tree->root);
 		cout << endl;
 	}	
-}
+}*/
 
